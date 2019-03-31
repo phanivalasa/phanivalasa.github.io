@@ -6,16 +6,15 @@ const HOSTED_URLS = {
       'model_js/metadata.json'
 };
 
-
 const examples = {
   'example1':
-      'One day she was sitting there, all by herself, and it was very still.',
+      'Emma Woodhouse, handsome, clever, and rich, with a comfortable home and happy disposition',
   'example2':
-      'From house to house he goes, A messenger small and slight, And whether it rains or snows, He sleeps outside in the night.',
+      'Little caps of blue they wear, And green ribbons, very fair.',
   'example3':
-      'Once there was a little yellow Tulip, and she lived down in a little dark house under the ground.',
+      'The professor had himself invented the flying machine, and had also invented nearly everything in it.',
   'example4':
-      'So she opened the door a little wee crack, and in they came.'
+      'Enter Flauius, Murellus, and certaine Commoners ouer the Stage.'
 };
 
 function status(statusText) {
