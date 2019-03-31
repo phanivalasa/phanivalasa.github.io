@@ -6,15 +6,16 @@ const HOSTED_URLS = {
       'model_js/metadata.json'
 };
 
+
 const examples = {
   'example1':
-      'Alice was beginning to get very tired of sitting by her sister on the bank.',
+      'One day she was sitting there, all by herself, and it was very still.',
   'example2':
-      'Buda-Pesth seems a wonderful place.',
+      'From house to house he goes, A messenger small and slight, And whether it rains or snows, He sleeps outside in the night.',
   'example3':
-      'Scepticism was as much the result of knowledge, as knowledge is of scepticism.',
+      'Once there was a little yellow Tulip, and she lived down in a little dark house under the ground.',
   'example4':
-      'Cob. A Trade Sir, that I hope I may vse, with a safe Conscience, which is indeed Sir, a Mender of bad soules'
+      'So she opened the door a little wee crack, and in they came.'
 };
 
 function status(statusText) {
