@@ -1,4 +1,5 @@
 
+
 const HOSTED_URLS = {
   model:
       'model_js/model.json',
@@ -8,7 +9,11 @@ const HOSTED_URLS = {
 
 const examples = {
   'example1':
-      'Light Blue'
+      'Light Blue',
+  'example2':
+      'green',
+  'example3':
+      'bright red'
 };
 
 function status(statusText) {
@@ -72,6 +77,7 @@ async function urlExists(url) {
 async function loadHostedPretrainedModel(url) {
   status('Loading pretrained model from ' + url);
   try {
+    console.log(url)
     const model = await tf.loadLayersModel(url);
     status('Done loading pretrained model.');
     disableLoadModelButtons();
@@ -116,13 +122,16 @@ class Classifier {
   predict(text) {
     // Convert to lower case and remove all punctuations.
     const inputText =
-        text.trim().toLowerCase().replace(/(\.|\,|\!)/g, '').split(' ');
+        text.trim().toLowerCase().replace(/(\.|\,|\!)/g, '');
+    console.log(inputText);
+    console.log(inputText.length)
     // Look up word indices.
-    const inputBuffer = tf.buffer([1, this.maxLen], 'float32');
+    const inputBuffer = tf.buffer([ this.maxLen,1], 'float32');
+    console.log(inputBuffer);
     for (let i = 0; i < inputText.length; ++i) {
       const word = inputText[i];
-      inputBuffer.set(this.wordIndex[word], 0, i);
-      //console.log(word, this.wordIndex[word], inputBuffer);
+      inputBuffer.set(this.wordIndex[word], 0, this.maxLen-inputText.length+i);
+      console.log(i, this.maxLen-inputText.length+i,word, this.wordIndex[word], inputBuffer);
     }
     const input = inputBuffer.toTensor();
     console.log(input);
