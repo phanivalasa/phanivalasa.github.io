@@ -1,5 +1,6 @@
 
 
+
 const HOSTED_URLS = {
   model:
       'model_js/model.json',
@@ -13,7 +14,7 @@ const examples = {
   'example2':
       'green',
   'example3':
-      'bright red'
+      'tensorflow orange'
 };
 
 function status(statusText) {
@@ -126,8 +127,8 @@ class Classifier {
     console.log(inputText);
     console.log(inputText.length)
     // Look up word indices.
-    const inputBuffer = tf.buffer([ this.maxLen,1], 'float32');
-    console.log(inputBuffer);
+    //const inputBuffer = tf.buffer([ this.maxLen,1], 'float32');
+    const inputBuffer = tf.buffer([1, this.maxLen], 'float32');
     for (let i = 0; i < inputText.length; ++i) {
       const word = inputText[i];
       inputBuffer.set(this.wordIndex[word], 0, this.maxLen-inputText.length+i);
@@ -138,8 +139,9 @@ class Classifier {
 
     status('Running inference');
     const beginMs = performance.now();
-    const predictOut = this.model.predict(input);
-    //console.log(predictOut.dataSync());
+    console.log(input)
+    const predictOut = this.model.predict(input);  //updated to take the list
+    console.log(predictOut.dataSync());
     const score = predictOut.dataSync();//[0];
     predictOut.dispose();
     const endMs = performance.now();
@@ -163,3 +165,4 @@ async function setup() {
 }
 
 setup();
+
