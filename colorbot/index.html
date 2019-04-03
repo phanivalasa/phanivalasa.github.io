@@ -1,7 +1,6 @@
 
 
 
-
 <!doctype html>
 
 <body>
@@ -13,7 +12,7 @@
     }
   </style>
   <h1>
-    Title
+    Colorbot
   </h1>
   <hr>
   <div class="create-model">
@@ -33,13 +32,20 @@
   <div>
     <select id="example-select" class="form-control">
       <option value="example1">light blue</option>
-      <option value="example1">green</option>
-      <option value="example1">tensorflow orange</option>
+      <option value="example2">green</option>
+      <option value="example3">tensorflow orange</option>
     </select>
   </div>
   <div>
     <textarea id="text-entry"></textarea>
+
   </div>
+
+  <div>
+    <textarea readonly id="text-color"></textarea>
+  </div>
+
+  </>
   <hr>
   <div>
     <span id="status">Standing by.</span>
@@ -48,4 +54,5 @@
   <script src='https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js'></script>
   <script src='index.js'></script>
 </body>
+
 

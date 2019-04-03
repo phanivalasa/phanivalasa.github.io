@@ -1,6 +1,5 @@
 
 
-
 const HOSTED_URLS = {
   model:
       'model_js/model.json',
@@ -10,7 +9,7 @@ const HOSTED_URLS = {
 
 const examples = {
   'example1':
-      'Light Blue',
+      'light Blue',
   'example2':
       'green',
   'example3':
@@ -47,13 +46,24 @@ function disableLoadModelButtons() {
 function doPredict(predict) {
   const textField = document.getElementById('text-entry');
   const result = predict(textField.value);
-  score_string = "Class scores: ";
+  score_string = "RGB: ";
+  var RG = ["R","G","B"];
+  var rgb_int = []
+  console.log(result)
   for (var x in result.score) {
-    score_string += x + " ->  " + result.score[x].toFixed(3) + ", "
+    score_string += RG[x] + " ->  " + Math.trunc(result.score[x]*255) + ", "
+    rgb_int.push(Math.trunc(result.score[x]*255))
   }
-  //console.log(score_string);
+  console.log(rgb_int[0],rgb_int[1], rgb_int[2]);
+
+  rgb_string = "rgb("+rgb_int[0]+','+rgb_int[1]+','+rgb_int[2]+")"
+  const mycolor = document.getElementById('text-color');
+  mycolor.style.backgroundColor = rgb_string;
+  console.log(mycolor.style.backgroundColor)
+
   status(
       score_string + ' elapsed: ' + result.elapsed.toFixed(3) + ' ms)');
+
 }
 
 function prepUI(predict) {
@@ -154,6 +164,12 @@ async function setup() {
   if (await urlExists(HOSTED_URLS.model)) {
     status('Model available: ' + HOSTED_URLS.model);
     const button = document.getElementById('load-model');
+
+    const mycolor = document.getElementById('text-color');
+    mycolor.style.backgroundColor = "white";
+    // document.getElementById('text-color').style.color="rgb(255,0,0)";
+    console.log(document.getElementById('text-color').style.backgroundColor);
+
     button.addEventListener('click', async () => {
       const predictor = await new Classifier().init(HOSTED_URLS);
       prepUI(x => predictor.predict(x));
